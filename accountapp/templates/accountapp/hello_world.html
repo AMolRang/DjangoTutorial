@@ -1,9 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div style="height: 10rem; background-color: #38df81; border-radius: 1rem; margin: 2rem;">
+    <div style="border-radius: 1rem; margin: 2rem; text-align: center; font-family: 'Quintessential', cursive;">
         <h1>
-            testing
+            Hello World LIST!
         </h1>
+        <form action="/account/hello_world/" method="post">
+            {% csrf_token %}
+            <div>
+                <input type="text" name = "hello_world_input">
+            </div>
+
+            <div>
+                <input type="submit" class="btn btn-primary" value="POST">
+            </div>
+        </form>
+
+        {% if hello_world_list %}
+            {% for hello_world in hello_world_list %}
+            <h4>
+                {{ hello_world.text }}
+            </h4>
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}
