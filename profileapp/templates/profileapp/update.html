@@ -3,12 +3,12 @@
 
 {% block content %}
 
-    <div style="text-align: center; max-width: 500px; margin: 4 rem auto;">
+    <div style="text-align: center; max-width: 500px; margin: 4 rem;">
         <div calss="mb-4">
-            <h4>SingUp</h4>
+            <h4>Update Profile</h4>
         </div>
-        <form action="{% url 'accountapp:create' %}" method="post">
-           {% csrf_token %}
+        <form action="{% url 'profileapp:update' pk=target_profile.pk %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             {% bootstrap_form form %}
             <input type = "submit" class="btn btn-dark rounded-pill col-6 mt-3">
         </form>
