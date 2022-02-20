@@ -1,45 +1,51 @@
 {% extends 'base.html' %}
-{% load bootstrap4 %}
 
 {% block content %}
 
-<div>
-    <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
-        <p>
-            <!-- 가입 시간 -->
-            {{ target_user.date_joined }}
-        </p>
+    <div>
+        <div style="text-align : center; max-width : 500px; margin : 4rem auto;">
 
-        {% if target_user.profile %}
-         <h2 style="font-family: NanumBarunpenB">
-            {{ target_user.profile.nickname }}
-        </h2>
-        {% else %}
-        <a href="{% url 'profileapp:create' %}">
-            <h2 style="font-family: NanumBarunpenB">
-                Create Profile
+            {% if target_user == user %}
+            <img src="{{target_user.profile.image.url}}" alt=""
+                 style="height : 12rem; width:10rem; border-radius:20rem; margin-bottom:2rem;">
+
+            <h2 style="font-family: 'MaruBuri-Bold'">
+                {{ target_user.profile.nickname }}
+                {% if target_user == user %}
+                <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                    edit
+                </a>
+                {% endif %}
             </h2>
-        </a>
-        {% endif %}
+            {% else %}
+            {% if target_user == user %}
+            {{ target_user.profile.nickname }}
+            <a href="{% url 'profileapp:create' %}">
+                <h2 style="font-family: 'MaruBuri-Bold'">
+                    Create Profile
+                </h2>
+            </a>
+            {% endif %}
+            {% endif %}
 
-        {% if target_user == user %}
-        <a href="{% url 'accountapp:update' pk=user.pk %}">
-            <p>
-                Change Info
-            </p>
-        </a>
-        {% endif %}
+            <h5 style="margin-bottom:3rem">
+                {{target_user.profile.message}}
+            </h5>
 
-        {% if target_user == user %}
-        <a href="{% url 'accountapp:delete' pk=user.pk %}">
-            <p>
-                Quit
-            </p>
-        </a>
-        {% endif %}
+            {% if target_user == user %}
+            <a href="{% url 'accountapp:update' pk=user.pk %}">
+                <p>
+                    Change Info
+                </p>
+            </a>
+            <a href="{% url 'accountapp:delete' pk=user.pk %}">
+                <p>
+                    Quit
+                </p>
+            </a>
 
+            {% endif %}
+        </div>
     </div>
-
-</div>
 
 {% endblock %}
