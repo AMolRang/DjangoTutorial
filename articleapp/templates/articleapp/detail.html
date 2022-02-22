@@ -11,7 +11,7 @@
                 {{ target_article.writer.profile.nickname }}
             </h5>
             <hr>
-            
+
             <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
                     src="{{ target_article.image.url }}" alt="">
 
@@ -30,7 +30,7 @@
             </a>
             {% endif %}
             <hr>
-
+            {% include 'commentapp/create.html' with article=target_article %}
         </div>
     </div>
 
