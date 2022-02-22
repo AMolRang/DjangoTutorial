@@ -22,7 +22,7 @@ class ProjectCreateView(CreateView):
     def get_success_url(self):
         return reverse('projectapp:detail', kwargs={'pk': self.object.pk})
 
-class ProjectDetailView(DetailView, MultipleObjectMixin): #여러가지 오브젝트를 다룰 수 있는 mixin
+class ProjectDetailView(DetailView, MultipleObjectMixin):
     model = Project
     context_object_name = 'target_project'
     template_name = 'projectapp/detail.html'
